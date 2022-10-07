@@ -2,10 +2,13 @@
 
 This project reproduces an issue running a test in Hardhat when the contract size is kite big. 
 
+The project can be compiled without problem but, when running the tests it fails.
+
 To reproduce the error follow the next steps:
 
 ```shell
-npm i 
+npm i   
+npx hardhat compile
 npx hardhat test
 ```
 Output Error:
