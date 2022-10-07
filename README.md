@@ -53,4 +53,4 @@ By doing that some contrats will exced the size limit and in particular `ReallyH
 Removing the `ReallyHugeContract` contract definition will solve the heap out of memory error when running the tests.
 
 
-I had try running `hh --max-memory 4096 test` and didnt fixed it. 
+I had try running `hh --max-memory 4096 test` and didn't fixed it. 
