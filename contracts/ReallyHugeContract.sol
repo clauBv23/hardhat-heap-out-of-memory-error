@@ -11,7 +11,7 @@ import "./openZContracts/openZcontractsUpgradeable//mocks/WithInit.sol";
 import "./MyGovernorVotesQuorumFraction.sol";
 import "./MyContract.sol";
 
-contract Contract is
+contract ReallyHugeContract is
     Governor,
     GovernorTimelockControl,
     GovernorCompatibilityBravo,
