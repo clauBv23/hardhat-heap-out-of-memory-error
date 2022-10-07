@@ -1,6 +1,6 @@
 # Sample Hardhat Project
 
-This project reproduces an issue running a test in Hardhat when the contract size is kite big. 
+This project only reproduces an issue running a test in Hardhat when the contract size is kite big. The contracts code's only purpose is to increase the contracts' size.
 
 The project can be compiled without problem but, when running the tests it fails.
 
