@@ -1,6 +1,6 @@
 # Sample Hardhat Project
 
-This project only reproduces an issue running a test in Hardhat when the contract size is kite big. The contracts code's only purpose is to increase the contracts' size.
+This project only reproduces an issue running a test in Hardhat when the contract size is quite big. The contracts code's only purpose is to increase the contracts' size.
 
 The project can be compiled without problem but, when running the tests it fails.
 
@@ -46,7 +46,7 @@ FATAL ERROR: MarkCompactCollector: young object promotion failed Allocation fail
 To check contracts size run:
 `npx hardhat size-contracts`
 
-By doing that some contracts will exceed the size limit and in particular `ReallyHugeContract` is kite big.
+By doing that some contracts will exceed the size limit and in particular `ReallyHugeContract` is quite big.
 ```shell
 ·----------------------|--------------|----------------·
  |  Contract Name       ·  Size (KiB)  ·  Change (KiB)  │
