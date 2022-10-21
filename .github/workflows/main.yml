@@ -5,9 +5,6 @@ name: Repo pipeline
 env:
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
- 
-   
-
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
@@ -33,12 +30,13 @@ jobs:
           npm install
           npx hardhat compile
 
-  - uses: act10ns/slack@v1
-    with: 
-      status: ${{ job.status }}
-      steps: ${{ toJson(steps) }}
-      channel: "#random"
-    if: always()
+  notify:
+    - uses: act10ns/slack@v1
+      with:
+        status: ${{ job.status }}
+        steps: ${{ toJson(steps) }}
+        channel: "#random"
+      if: always()
 
   # coverage:
   #   runs-on: ubuntu-latest
