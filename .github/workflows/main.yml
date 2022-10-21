@@ -23,12 +23,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # - uses: actions/checkout@v2
+      - uses: ./
 
       # - name: Setup NodeJS
       #   uses: actions/setup-node@v2
 
       - name: Npm install
-        uses: ./
         run: npm i
 
       - name: Run coverage
