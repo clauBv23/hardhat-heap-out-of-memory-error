@@ -2,6 +2,9 @@
 
 name: Repo pipeline
 
+env:
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
@@ -27,14 +30,14 @@ jobs:
           npm install
           npx hardhat compile
 
-  coverage:
+  tests:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: run coverage
+      - name: run test
         run: |
-          npx hardhat coverage
+          npx hardhat test
 
   # coverage:
   #   runs-on: ubuntu-latest
