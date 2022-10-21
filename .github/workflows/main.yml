@@ -1,52 +1,32 @@
+# This is a basic workflow to help you get started with Actions
+
 name: Repo pipeline
 
-# concurrency:
-#   group: ${{ github.workflow }}-${{ github.event.number || github.ref_name }}
-#   cancel-in-progress: true
-
+# Controls when the workflow will run
 on:
+  # Triggers the workflow on push or pull request events but only for the main branch
   push:
   schedule:
     - cron: "0 3 * * *"
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-    # types: [opened, reopened]
-    # branches:
-    #   - "**"
-# env:
-# ARTIFACTORY_USER: ${{ secrets.ARTIFACTORY_USER }}
-# ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
-# GITHUB_PR_NUMBER: ${{ github.event.number || '' }}
-
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  # This workflow contains a single job called "build"
   build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
       - name: npm install and build
         run: |
           npm install
           npx hardhat compile
-      - uses: actions/upload-artifact@v2
-        with:
-          name: artifacts
-          path: public/
 
-  coverage:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
-        with:
-          name: webpack artifacts
-          path: public
-      - name: npm install, and test
-        run: |
-          npm install
-          npx hardhat coverage
-        env:
-          CI: true
   # coverage:
   #   runs-on: ubuntu-latest
   #   steps:
