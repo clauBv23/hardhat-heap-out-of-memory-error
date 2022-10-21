@@ -29,9 +29,9 @@ jobs:
         run: |
           npm install
           npx hardhat compile
-  notify:
-    runs-on: ubuntu-latest
-    steps:
+      # notify:
+      #   runs-on: ubuntu-latest
+      #   steps:
       - uses: act10ns/slack@v1
         with:
           status: ${{ job.status }}
