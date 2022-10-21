@@ -19,18 +19,48 @@ on:
 # GITHUB_PR_NUMBER: ${{ github.event.number || '' }}
 
 jobs:
-  coverage:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      # - uses: actions/checkout@v2
-      # - uses: ./
+      - uses: actions/checkout@v2
+      - name: npm install and build
+        run: |
+          npm install
+          npx hardhat compile
+      - uses: actions/upload-artifact@v2
+        with:
+          name: artifacts
+          path: public/
 
-      # - name: Setup NodeJS
-      #   uses: actions/setup-node@v2
+  coverage:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: webpack artifacts
+          path: public
+      - name: npm install, and test
+        run: |
+          npm install
+          npx hardhat coverage
+        env:
+          CI: true
+  # coverage:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     # - uses: actions/checkout@v2
+  #     # - uses: ./
 
-      - name: Npm install
-        run: npm i
+  #     # - name: Setup NodeJS
+  #     #   uses: actions/setup-node@v2
 
-      - name: Run coverage
-        run: npx hardhat tests
+  #     # - name: Npm install
+  #     #   run: npm i
+
+  #     - name: Run coverage
+  #       run: |
+  #         npm install
+  #         npx hardhat tests
