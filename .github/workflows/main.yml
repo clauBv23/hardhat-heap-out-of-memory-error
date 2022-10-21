@@ -5,10 +5,10 @@ concurrency:
   cancel-in-progress: true
 
 on:
-  pull_request:
-    types: [opened, reopened]
-    branches:
-      - "**"
+  push:
+    # types: [opened, reopened]
+    # branches:
+    #   - "**"
 env:
   # ARTIFACTORY_USER: ${{ secrets.ARTIFACTORY_USER }}
   # ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
