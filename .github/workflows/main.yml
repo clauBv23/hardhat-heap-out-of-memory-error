@@ -1,0 +1,23 @@
+name: Repo pipeline
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref_name }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    types: [opened, reopened]
+    branches:
+      - "**"
+env:
+  # ARTIFACTORY_USER: ${{ secrets.ARTIFACTORY_USER }}
+  # ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
+  # GITHUB_PR_NUMBER: ${{ github.event.number || '' }}
+
+jobs:
+
+  coverage: 
+    runs-on: ubuntu-latest
+    steps:
+        - name: Run coverage
+        run: npx hardhat test
