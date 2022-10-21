@@ -32,13 +32,13 @@ jobs:
       # notify:
       #   runs-on: ubuntu-latest
       #   steps:
-      - uses: act10ns/slack@v1
       - name: notify in slack
-        with:
-          status: ${{ job.status }}
-          steps: ${{ toJson(steps) }}
-          channel: "#random"
-        if: always()
+        uses: act10ns/slack@v1
+          with:
+            status: ${{ job.status }}
+            steps: ${{ toJson(steps) }}
+            channel: "#random"
+          if: always()
 
   # coverage:
   #   runs-on: ubuntu-latest
