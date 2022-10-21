@@ -22,11 +22,8 @@ jobs:
   coverage:
     runs-on: ubuntu-latest
     steps:
-      #  - name: Clone repo
-      #     uses: clauBv23/hardhat-heap-out-of-memory-error
-      #     with:
-      #       owner: 'clau'
-      #       repository: 'hardhat-heap-out-of-memory-error'
+       - name: Npm install
+          run: npm i
 
       - name: Run coverage
         run: npx hardhat test
