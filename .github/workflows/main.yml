@@ -22,8 +22,8 @@ jobs:
   coverage:
     runs-on: ubuntu-latest
     steps:
-       - name: Npm install
-          run: npm i
+      - name: Npm install
+        run: npm i
 
       - name: Run coverage
         run: npx hardhat test
