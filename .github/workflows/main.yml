@@ -1,11 +1,15 @@
 name: Repo pipeline
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.number || github.ref_name }}
-  cancel-in-progress: true
+# concurrency:
+#   group: ${{ github.workflow }}-${{ github.event.number || github.ref_name }}
+#   cancel-in-progress: true
 
 on:
   push:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
     # types: [opened, reopened]
     # branches:
     #   - "**"
@@ -15,9 +19,14 @@ env:
   # GITHUB_PR_NUMBER: ${{ github.event.number || '' }}
 
 jobs:
-
-  coverage: 
+  coverage:
     runs-on: ubuntu-latest
     steps:
-        - name: Run coverage
+      #  - name: Clone repo
+      #     uses: clauBv23/hardhat-heap-out-of-memory-error
+      #     with:
+      #       owner: 'clau'
+      #       repository: 'hardhat-heap-out-of-memory-error'
+
+      - name: Run coverage
         run: npx hardhat test
