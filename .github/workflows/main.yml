@@ -28,6 +28,7 @@ jobs:
       #   uses: actions/setup-node@v2
 
       - name: Npm install
+        uses: ./
         run: npm i
 
       - name: Run coverage
