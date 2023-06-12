@@ -71,3 +71,4 @@ I tried running `hh --max-memory 4096 test` and didn't fix it. 
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+<!-- [![All Contributors](https://img.shields.io/github/all-contributors/clauBv23/hardhat-heap-out-of-memory?color=ee8449&style=flat-square)](#contributors) -->
