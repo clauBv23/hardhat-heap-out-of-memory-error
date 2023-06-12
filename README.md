@@ -59,3 +59,15 @@ Removing the `ReallyHugeContract` contract definition will solve the heap out-of
 
 
 I tried running `hh --max-memory 4096 test` and didn't fix it. 
+
+
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
