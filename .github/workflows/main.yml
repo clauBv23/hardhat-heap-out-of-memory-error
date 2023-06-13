@@ -1,0 +1,60 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Repo pipeline
+
+env:
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+  schedule:
+    - cron: "0 3 * * *"
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - name: npm install and build
+        run: |
+          npm install
+          npx hardhat compile
+      # notify:
+      #   runs-on: ubuntu-latest
+      #   steps:
+      - name: notify in slack
+        uses: act10ns/slack@v1
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+
+          channel: "#random"
+        if: always()
+
+  # coverage:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     # - uses: actions/checkout@v2
+  #     # - uses: ./
+
+  #     # - name: Setup NodeJS
+  #     #   uses: actions/setup-node@v2
+
+  #     # - name: Npm install
+  #     #   run: npm i
+
+  #     - name: Run coverage
+  #       run: |
+  #         npm install
+  #         npx hardhat tests
